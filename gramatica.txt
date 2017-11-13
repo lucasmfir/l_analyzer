@@ -14,7 +14,7 @@
 13 >> b13 | op6 | /16 | y 
 14 >> qq14 | *15
 15 >> /6 | qq14 | *15 
-16 >> *17
+16 >> b6 | a10 | l11 | *17 
 17 >> qq17 | *18 
 18 >> /13 | qq17 | *18
 
@@ -24,3 +24,6 @@ b - Branco
 op - Operadores
 qq - Qualquer coisa
 y = Lambida
+
+
+16

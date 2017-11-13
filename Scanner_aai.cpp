@@ -7,7 +7,8 @@
 
 //Bibliotecas
 #include <stdio.h>
-#include <curses.h>
+//#include <curses.h>
+#include <conio.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -72,7 +73,8 @@ int scanner(char automato[100]) {
   			break;
 
       case 3:
-        while ( search(automato[i], num) ||
+        while ( automato[i] == '=' || 
+				search(automato[i], num) ||
                 search(automato[i], letra) ||
                 search(automato[i], oper) &&
                 automato[i] != '*') {
@@ -93,7 +95,8 @@ int scanner(char automato[100]) {
         if( automato[i] == '/') {
           state = 0;
           i++;
-        }else if ( search(automato[i], num) ||
+        }else if ( automato[i] == '=' || 
+				   search(automato[i], num) ||
                    search(automato[i], letra) ||
                    search(automato[i], oper)) {
           state = 3;
@@ -146,7 +149,8 @@ int scanner(char automato[100]) {
           break;
 
         case 8:
-          while (search(automato[i], num) ||
+          while (automato[i] == '=' || 
+		  		 search(automato[i], num) ||
                  search(automato[i], letra) ||
                  search(automato[i], oper) &&
                  automato[i] != '*') {
@@ -167,9 +171,10 @@ int scanner(char automato[100]) {
           if ( automato[i] == '/') {
             state = 5;
             i++;
-          }else if ( search(automato[i], num) ||
-               search(automato[i], letra) ||
-               search(automato[i], oper)) {
+          }else if ( automato[i] == '=' || 
+		  			 search(automato[i], num) ||
+               		 search(automato[i], letra) ||
+               		 search(automato[i], oper)) {
             state = 8;
             i++;
           }else{
@@ -181,14 +186,14 @@ int scanner(char automato[100]) {
           while ( search(automato[i], num) ) {
             i++;
           }
-          if ( search(automato[i], oper) ) {
-            state = 6;
+          if ( automato[i] == '/' ) {
+            state = 16;
             i++;
           }else if ( automato[i] == ' ' ) {
             state = 13;
             i++;
-          } else if ( automato[i] == '/' ) {
-            state = 16;
+          } else if ( search(automato[i], oper)) {
+            state = 6;
             i++;
           } else if (automato[i] == 10 || automato[i] == 13) {
     				state = 19;
@@ -245,7 +250,8 @@ int scanner(char automato[100]) {
           break;
 
         case 14:
-          while ( search(automato[i], num) ||
+          while ( automato[i] == '=' || 
+		  		  search(automato[i], num) ||
                   search(automato[i], letra) ||
                   search(automato[i], oper) &&
                   automato[i] != '*') {
@@ -266,7 +272,8 @@ int scanner(char automato[100]) {
           if ( automato[i] == '/' ) {
             state = 6;
             i++;
-          }else if ( search(automato[i], num) ||
+          }else if ( automato[i] == '=' || 
+		  			 search(automato[i], num) ||
                      search(automato[i], letra) ||
                      search(automato[i], oper) &&
                      automato[i] != '*') {
@@ -281,13 +288,24 @@ int scanner(char automato[100]) {
           if ( automato[i] == '*' ) {
             state = 17;
             i++;
-          }else{
+          } else if ( automato[i] == ' ' ) {
+            state = 6;
+            i++;
+          } else if ( search(automato[i], num) ) {
+            state = 10;
+            i++;
+          } else if ( search(automato[i], letra) ) {
+            state = 11;
+            i++;
+          } 
+		  else {
             return state;
           }
           break;
 
         case 17:
-          while( search(automato[i], num) ||
+          while( automato[i] == '=' || 
+		  		 search(automato[i], num) ||
                  search(automato[i], letra) ||
                  search(automato[i], oper) &&
                  automato[i] != '*') {
@@ -308,7 +326,8 @@ int scanner(char automato[100]) {
           if ( automato[i] == '/' ) {
             state = 13;
             i++;
-          }else if (search(automato[i], num) ||
+          }else if (automato[i] == '=' || 
+		  			search(automato[i], num) ||
                     search(automato[i], letra) ||
                     search(automato[i], oper) &&
                     automato[i] != '*') {

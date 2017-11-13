@@ -1,0 +1,10 @@
+
+Expressao correta - x = /*dsa=*+*/ x2/d
+
+Expressao correta - x = 4    / 2
+
+Expressao correta - x= 8/ 2/as/ 2 /a6*2
+
+Expressao correta - x= 8/ 2/as/ 2/*aaa*/ /a6*2
+
+Expressao correta - x = 2 * v
